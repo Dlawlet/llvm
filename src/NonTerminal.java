@@ -1,0 +1,20 @@
+public enum NonTerminal {
+    Program,
+    Code,
+    Instruction,
+    Assign,
+    ExprArith,
+    ExprTail,
+    ProdExpr,
+    ProdTail,
+    ExprAtom,
+    AddOp,
+    MultOp,
+    Cond,
+    If,
+    MaybeElse,
+    Comp,
+    While,
+    Print,
+    Read
+}

@@ -1,0 +1,14 @@
+\documentclass[border=5pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{forest}
+
+\begin{document}
+
+\begin{forest}for tree={rectangle,draw, l sep=20pt}[{Program} [{BEGIN \texttt{BEGIN}} ][{PROGNAME \texttt{Ifthen}} ][{Code} [{Instruction} [{Assign} [{VARNAME \texttt{y}} ][{ASSIGN \texttt{:=}} ][{ExprArith} [{ProdExpr} [{ExprAtom} [{NUMBER \texttt{0}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{$\varepsilon$} ]]]]][{COMMA \texttt{,}} ][{Code} [{Instruction} [{Assign} [{VARNAME \texttt{x}} ][{ASSIGN \texttt{:=}} ][{ExprArith} [{ProdExpr} [{ExprAtom} [{NUMBER \texttt{1}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{$\varepsilon$} ]]]]][{COMMA \texttt{,}} ][{Code} [{Instruction} [{If} [{IF \texttt{IF}} ][{LPAREN \texttt{(}} ][{Cond} [{ExprArith} [{ProdExpr} [{ExprAtom} [{VARNAME \texttt{x}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{$\varepsilon$} ]]][{Comp} [{EQUAL \texttt{=}} ]][{ExprArith} [{ProdExpr} [{ExprAtom} [{NUMBER \texttt{1}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{$\varepsilon$} ]]]][{RPAREN \texttt{)}} ][{THEN \texttt{THEN}} ][{Code} [{Instruction} [{Assign} [{VARNAME \texttt{y}} ][{ASSIGN \texttt{:=}} ][{ExprArith} [{ProdExpr} [{ExprAtom} [{NUMBER \texttt{2}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{$\varepsilon$} ]]]]][{COMMA \texttt{,}} ][{Code} [{$\varepsilon$} ]]][{Code} [{$\varepsilon$} ]][{END \texttt{END}} ]]][{COMMA \texttt{,}} ][{Code} [{$\varepsilon$} ]]]]][{END \texttt{END}} ][{$\dashv$} ]];
+\end{forest}
+
+\end{document}
+%% Local Variables:
+%% TeX-engine: pdflatex
+%% End:

@@ -1,0 +1,139 @@
+********** The Grammar **********
+Program     --> BEGIN PROGNAME Code END 
+Code        --> EPSILON 
+            --> Instruction COMMA Code 
+Instruction --> Assign 
+            --> While 
+            --> Print 
+            --> If 
+            --> Read 
+Assign      --> VARNAME ASSIGN ExprArith 
+ExprArith   --> ProdExpr ExprTail 
+ExprTail    --> EPSILON 
+            --> AddOp ProdExpr ExprTail 
+ProdExpr    --> ExprAtom ProdTail 
+ProdTail    --> EPSILON 
+            --> MultOp ExprAtom ProdTail 
+ExprAtom    --> VARNAME 
+            --> LPAREN ExprArith RPAREN 
+            --> MINUS ExprAtom 
+            --> NUMBER 
+AddOp       --> MINUS 
+            --> PLUS 
+MultOp      --> DIVIDE 
+            --> TIMES 
+Cond        --> ExprArith Comp ExprArith 
+If          --> IF LPAREN Cond RPAREN THEN Code MaybeElse END 
+MaybeElse   --> EPSILON 
+            --> ELSE Code 
+Comp        --> GREATER 
+            --> EQUAL 
+            --> SMALLER 
+While       --> WHILE LPAREN Cond RPAREN DO Code END 
+Print       --> PRINT LPAREN VARNAME RPAREN 
+Read        --> READ LPAREN VARNAME RPAREN 
+
+********** First **********
+Program     | BEGIN
+Code        | VARNAME, IF, WHILE, PRINT, READ, EPSILON
+Instruction | VARNAME, IF, WHILE, PRINT, READ
+Assign      | VARNAME
+ExprArith   | VARNAME, NUMBER, LPAREN, MINUS
+ExprTail    | MINUS, PLUS, EPSILON
+ProdExpr    | VARNAME, NUMBER, LPAREN, MINUS
+ProdTail    | TIMES, DIVIDE, EPSILON
+ExprAtom    | VARNAME, NUMBER, LPAREN, MINUS
+AddOp       | MINUS, PLUS
+MultOp      | TIMES, DIVIDE
+Cond        | VARNAME, NUMBER, LPAREN, MINUS
+If          | IF
+MaybeElse   | ELSE, EPSILON
+Comp        | EQUAL, GREATER, SMALLER
+While       | WHILE
+Print       | PRINT
+Read        | READ
+
+********** Follow **********
+Program     | 
+Code        | END, COMMA, ELSE, EPSILON
+Instruction | COMMA
+Assign      | COMMA
+ExprArith   | COMMA, RPAREN, EQUAL, GREATER, SMALLER
+ExprTail    | COMMA, RPAREN, EQUAL, GREATER, SMALLER
+ProdExpr    | COMMA, RPAREN, MINUS, PLUS, EQUAL, GREATER, SMALLER, EPSILON
+ProdTail    | COMMA, RPAREN, MINUS, PLUS, EQUAL, GREATER, SMALLER, EPSILON
+ExprAtom    | COMMA, RPAREN, MINUS, PLUS, TIMES, DIVIDE, EQUAL, GREATER, SMALLER, EPSILON
+AddOp       | VARNAME, NUMBER, LPAREN, MINUS
+MultOp      | VARNAME, NUMBER, LPAREN, MINUS
+Cond        | RPAREN
+If          | COMMA
+MaybeElse   | END
+Comp        | VARNAME, NUMBER, LPAREN, MINUS
+While       | COMMA
+Print       | COMMA
+Read        | COMMA
+null        | EPSILON
+
+********** Action table **********
+[Program    , BEGIN    ] : BEGIN PROGNAME Code END
+[Code       , END      ] : EPSILON
+[Code       , COMMA    ] : EPSILON
+[Code       , VARNAME  ] : Instruction COMMA Code
+[Code       , IF       ] : Instruction COMMA Code
+[Code       , ELSE     ] : EPSILON
+[Code       , WHILE    ] : Instruction COMMA Code
+[Code       , PRINT    ] : Instruction COMMA Code
+[Code       , READ     ] : Instruction COMMA Code
+[Code       , EPSILON  ] : EPSILON
+[Instruction, VARNAME  ] : Assign
+[Instruction, IF       ] : If
+[Instruction, WHILE    ] : While
+[Instruction, PRINT    ] : Print
+[Instruction, READ     ] : Read
+[Assign     , VARNAME  ] : VARNAME ASSIGN ExprArith
+[ExprArith  , VARNAME  ] : ProdExpr ExprTail
+[ExprArith  , NUMBER   ] : ProdExpr ExprTail
+[ExprArith  , LPAREN   ] : ProdExpr ExprTail
+[ExprArith  , MINUS    ] : ProdExpr ExprTail
+[ExprTail   , COMMA    ] : EPSILON
+[ExprTail   , RPAREN   ] : EPSILON
+[ExprTail   , MINUS    ] : AddOp ProdExpr ExprTail
+[ExprTail   , PLUS     ] : AddOp ProdExpr ExprTail
+[ExprTail   , EQUAL    ] : EPSILON
+[ExprTail   , GREATER  ] : EPSILON
+[ExprTail   , SMALLER  ] : EPSILON
+[ProdExpr   , VARNAME  ] : ExprAtom ProdTail
+[ProdExpr   , NUMBER   ] : ExprAtom ProdTail
+[ProdExpr   , LPAREN   ] : ExprAtom ProdTail
+[ProdExpr   , MINUS    ] : ExprAtom ProdTail
+[ProdTail   , COMMA    ] : EPSILON
+[ProdTail   , RPAREN   ] : EPSILON
+[ProdTail   , MINUS    ] : EPSILON
+[ProdTail   , PLUS     ] : EPSILON
+[ProdTail   , TIMES    ] : MultOp ExprAtom ProdTail
+[ProdTail   , DIVIDE   ] : MultOp ExprAtom ProdTail
+[ProdTail   , EQUAL    ] : EPSILON
+[ProdTail   , GREATER  ] : EPSILON
+[ProdTail   , SMALLER  ] : EPSILON
+[ProdTail   , EPSILON  ] : EPSILON
+[ExprAtom   , VARNAME  ] : VARNAME
+[ExprAtom   , NUMBER   ] : NUMBER
+[ExprAtom   , LPAREN   ] : LPAREN ExprArith RPAREN
+[ExprAtom   , MINUS    ] : MINUS ExprAtom
+[AddOp      , MINUS    ] : MINUS
+[AddOp      , PLUS     ] : PLUS
+[MultOp     , TIMES    ] : TIMES
+[MultOp     , DIVIDE   ] : DIVIDE
+[Cond       , VARNAME  ] : ExprArith Comp ExprArith
+[Cond       , NUMBER   ] : ExprArith Comp ExprArith
+[Cond       , LPAREN   ] : ExprArith Comp ExprArith
+[Cond       , MINUS    ] : ExprArith Comp ExprArith
+[If         , IF       ] : IF LPAREN Cond RPAREN THEN Code MaybeElse END
+[MaybeElse  , END      ] : EPSILON
+[MaybeElse  , ELSE     ] : ELSE Code
+[Comp       , EQUAL    ] : EQUAL
+[Comp       , GREATER  ] : GREATER
+[Comp       , SMALLER  ] : SMALLER
+[While      , WHILE    ] : WHILE LPAREN Cond RPAREN DO Code END
+[Print      , PRINT    ] : PRINT LPAREN VARNAME RPAREN
+[Read       , READ     ] : READ LPAREN VARNAME RPAREN

@@ -1,0 +1,14 @@
+\documentclass[border=5pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{forest}
+
+\begin{document}
+
+\begin{forest}for tree={rectangle,draw, l sep=20pt}[{Program} [{BEGIN \texttt{BEGIN}} ][{PROGNAME \texttt{Readprint}} ][{Code} [{Instruction} [{Read} [{READ \texttt{READ}} ][{LPAREN \texttt{(}} ][{VARNAME \texttt{x}} ][{RPAREN \texttt{)}} ]]][{COMMA \texttt{,}} ][{Code} [{Instruction} [{Print} [{PRINT \texttt{PRINT}} ][{LPAREN \texttt{(}} ][{VARNAME \texttt{x}} ][{RPAREN \texttt{)}} ]]][{COMMA \texttt{,}} ][{Code} [{$\varepsilon$} ]]]][{END \texttt{END}} ][{$\dashv$} ]];
+\end{forest}
+
+\end{document}
+%% Local Variables:
+%% TeX-engine: pdflatex
+%% End:

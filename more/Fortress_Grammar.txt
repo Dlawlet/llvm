@@ -1,0 +1,33 @@
+<Program>      --> BEGIN PROGNAME <Code> END
+<Code>         --> <Instruction> COMMA <Code> 
+               --> epsilon 
+<Instruction>  --> <Assign> 
+               --> <If>
+               --> <While>
+               --> <Print>
+               --> <Read>
+<Assign>       --> VARNAME ASSIGN <ExprArith> 
+<ExprArith>    --> <ProdExpr> <ExprTail>
+<ExprTail>     --> <AddOp> <ProdExpr> <ExprTail>
+               --> epsilon
+<ProdExpr>     --> <ExprAtom> <ProdTail> 
+<ProdTail>     --> <MultOp> <ExprAtom> <ProdTail>
+               --> epsilon
+<ExprAtom>     --> MINUS <ExprAtom>
+               --> VARNAME
+               --> NUMBER
+               --> LPAREN <ExprArith> RPAREN
+<AddOp>        --> PLUS
+               --> MINUS
+<MultOp>       --> TIMES
+               --> DIVIDE
+<Cond>         --> <ExprArith> <Comp> <ExprArith>
+<If>           --> IF LPAREN <Cond> RPAREN THEN <Code> <MaybeElse> END
+<MaybeElse>    --> ELSE <Code> 
+               --> epsilon
+<Comp>         --> EQUAL
+               --> GREATER
+               --> SMALLER
+<While>        --> WHILE LPAREN <Cond> RPAREN DO <Code> END
+<Print>        --> PRINT LPAREN VARNAME RPAREN
+<Read>         --> READ LPAREN VARNAME RPAREN

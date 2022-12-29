@@ -1,0 +1,14 @@
+\documentclass[border=5pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{forest}
+
+\begin{document}
+
+\begin{forest}for tree={rectangle,draw, l sep=20pt}[{Program} [{BEGIN \texttt{BEGIN}} ][{PROGNAME \texttt{Whilesimple}} ][{Code} [{Instruction} [{Read} [{READ \texttt{READ}} ][{LPAREN \texttt{(}} ][{VARNAME \texttt{i}} ][{RPAREN \texttt{)}} ]]][{COMMA \texttt{,}} ][{Code} [{Instruction} [{Assign} [{VARNAME \texttt{i}} ][{ASSIGN \texttt{:=}} ][{ExprArith} [{ProdExpr} [{ExprAtom} [{NUMBER \texttt{0}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{$\varepsilon$} ]]]]][{COMMA \texttt{,}} ][{Code} [{Instruction} [{While} [{WHILE \texttt{WHILE}} ][{LPAREN \texttt{(}} ][{Cond} [{ExprArith} [{ProdExpr} [{ExprAtom} [{VARNAME \texttt{i}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{$\varepsilon$} ]]][{Comp} [{GREATER \texttt{>}} ]][{ExprArith} [{ProdExpr} [{ExprAtom} [{NUMBER \texttt{5}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{$\varepsilon$} ]]]][{RPAREN \texttt{)}} ][{DO \texttt{DO}} ][{Code} [{Instruction} [{Assign} [{VARNAME \texttt{i}} ][{ASSIGN \texttt{:=}} ][{ExprArith} [{ProdExpr} [{ExprAtom} [{VARNAME \texttt{i}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{AddOp} [{PLUS \texttt{+}} ]][{ProdExpr} [{ExprAtom} [{NUMBER \texttt{1}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{$\varepsilon$} ]]]]]][{COMMA \texttt{,}} ][{Code} [{$\varepsilon$} ]]][{END \texttt{END}} ]]][{COMMA \texttt{,}} ][{Code} [{Instruction} [{Print} [{PRINT \texttt{PRINT}} ][{LPAREN \texttt{(}} ][{VARNAME \texttt{i}} ][{RPAREN \texttt{)}} ]]][{COMMA \texttt{,}} ][{Code} [{$\varepsilon$} ]]]]]][{END \texttt{END}} ][{$\dashv$} ]];
+\end{forest}
+
+\end{document}
+%% Local Variables:
+%% TeX-engine: pdflatex
+%% End:

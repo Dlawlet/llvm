@@ -1,0 +1,14 @@
+\documentclass[border=5pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{forest}
+
+\begin{document}
+
+\begin{forest}for tree={rectangle,draw, l sep=20pt}[{Program} [{BEGIN \texttt{BEGIN}} ][{PROGNAME \texttt{Parentheses}} ][{Code} [{Instruction} [{Read} [{READ \texttt{READ}} ][{LPAREN \texttt{(}} ][{VARNAME \texttt{a}} ][{RPAREN \texttt{)}} ]]][{COMMA \texttt{,}} ][{Code} [{Instruction} [{Assign} [{VARNAME \texttt{a}} ][{ASSIGN \texttt{:=}} ][{ExprArith} [{ProdExpr} [{ExprAtom} [{LPAREN \texttt{(}} ][{ExprArith} [{ProdExpr} [{ExprAtom} [{NUMBER \texttt{1}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{AddOp} [{PLUS \texttt{+}} ]][{ProdExpr} [{ExprAtom} [{LPAREN \texttt{(}} ][{ExprArith} [{ProdExpr} [{ExprAtom} [{NUMBER \texttt{2}} ]][{ProdTail} [{MultOp} [{TIMES \texttt{*}} ]][{ExprAtom} [{NUMBER \texttt{3}} ]][{ProdTail} [{$\varepsilon$} ]]]][{ExprTail} [{AddOp} [{PLUS \texttt{+}} ]][{ProdExpr} [{ExprAtom} [{LPAREN \texttt{(}} ][{ExprArith} [{ProdExpr} [{ExprAtom} [{NUMBER \texttt{4}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{AddOp} [{MINUS \texttt{-}} ]][{ProdExpr} [{ExprAtom} [{NUMBER \texttt{5}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{$\varepsilon$} ]]]][{RPAREN \texttt{)}} ]][{ProdTail} [{MultOp} [{DIVIDE \texttt{/}} ]][{ExprAtom} [{NUMBER \texttt{6}} ]][{ProdTail} [{$\varepsilon$} ]]]][{ExprTail} [{$\varepsilon$} ]]]][{RPAREN \texttt{)}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{$\varepsilon$} ]]]][{RPAREN \texttt{)}} ]][{ProdTail} [{$\varepsilon$} ]]][{ExprTail} [{$\varepsilon$} ]]]]][{COMMA \texttt{,}} ][{Code} [{Instruction} [{Print} [{PRINT \texttt{PRINT}} ][{LPAREN \texttt{(}} ][{VARNAME \texttt{a}} ][{RPAREN \texttt{)}} ]]][{COMMA \texttt{,}} ][{Code} [{$\varepsilon$} ]]]]][{END \texttt{END}} ][{$\dashv$} ]];
+\end{forest}
+
+\end{document}
+%% Local Variables:
+%% TeX-engine: pdflatex
+%% End:
